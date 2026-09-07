@@ -35,7 +35,7 @@ public class ClienteEntity {
     @Column(nullable = false)
     private String telefone;
 
-    @OneToMany(mappedBy = "clienteEntity")
+    @OneToMany(mappedBy = "clienteEntity", cascade = CascadeType.ALL)
     private List<ContaEntity> contas = new ArrayList<>();
 
 

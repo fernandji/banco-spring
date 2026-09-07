@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "conta")
 @Entity
@@ -28,6 +30,8 @@ public class ContaEntity {
     @JoinColumn(name = "id_cliente", nullable = false)
     private ClienteEntity clienteEntity;
 
+    @OneToMany(mappedBy = "contaOrigem")
+    private List<Transacao> transacoes = new ArrayList<>();
 
 
 }
