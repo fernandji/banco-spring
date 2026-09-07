@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class ContaResponseDto {
-    private String numConta;
+    private Long idConta;
+    private String nomeTitular;
     private BigDecimal saldo;
 }

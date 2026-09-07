@@ -15,6 +15,7 @@ public class ContaService {
     private final IClienteRepository clienteRepository;
     private final IContaRepository contaRepository;
 
+
     public void criarConta(Long idCliente){
         ClienteEntity clienteEntity = clienteRepository.findById(idCliente)
                 .orElseThrow(()-> new RuntimeException("Cliente não encontrado"));
