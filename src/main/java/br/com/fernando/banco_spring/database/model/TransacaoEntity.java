@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Transacao {
+public class TransacaoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_transacao")
@@ -34,11 +34,11 @@ public class Transacao {
     @Column(nullable = false, updatable = false, name = "data_hora")
     private LocalDateTime dataHora;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "id_conta_origem")
     private ContaEntity contaOrigem;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "id_conta_destino")
     private ContaEntity contaDestino;
 

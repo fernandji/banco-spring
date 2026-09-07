@@ -29,9 +29,4 @@ public class ContaEntity {
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
     private ClienteEntity clienteEntity;
-
-    @OneToMany(mappedBy = "contaOrigem")
-    private List<Transacao> transacoes = new ArrayList<>();
-
-
 }
