@@ -20,9 +20,6 @@ public class ContaEntity {
     @Column(name = "id_conta")
     private Long idConta;
 
-    @Column(name = "numero_conta")
-    private String numConta;
-
     @Column(nullable = false)
     private BigDecimal saldo;
 
