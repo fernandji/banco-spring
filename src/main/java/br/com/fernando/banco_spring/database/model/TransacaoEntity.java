@@ -1,11 +1,9 @@
 package br.com.fernando.banco_spring.database.model;
 
 import br.com.fernando.banco_spring.database.enums.TipoPagamento;
+import br.com.fernando.banco_spring.database.enums.TipoTransacao;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -17,6 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class TransacaoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +24,10 @@ public class TransacaoEntity {
 
     @Column(nullable = false)
     private BigDecimal valor;
+
+    @Enumerated
+    @Column(nullable = false, name = "tipo_transacao")
+    private TipoTransacao tipoTransacao;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "tipo_pagamento")
