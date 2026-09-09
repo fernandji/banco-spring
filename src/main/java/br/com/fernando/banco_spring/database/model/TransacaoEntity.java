@@ -25,12 +25,12 @@ public class TransacaoEntity {
     @Column(nullable = false)
     private BigDecimal valor;
 
-    @Enumerated
-    @Column(nullable = false, name = "tipo_transacao")
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, name = "tipo_transacao", length = 50)
     private TipoTransacao tipoTransacao;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, name = "tipo_pagamento")
+    @Column(nullable = false, name = "tipo_pagamento", length = 50)
     private TipoPagamento tipoPagamento;
 
     @CreationTimestamp

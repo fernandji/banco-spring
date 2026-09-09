@@ -8,6 +8,7 @@ import br.com.fernando.banco_spring.database.model.TransacaoEntity;
 import br.com.fernando.banco_spring.database.repository.IClienteRepository;
 import br.com.fernando.banco_spring.database.repository.IContaRepository;
 import br.com.fernando.banco_spring.database.repository.ITransacaoRepository;
+import br.com.fernando.banco_spring.dto.TransacaoSaqueRequestDto;
 import br.com.fernando.banco_spring.dto.TransacaoSaqueResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,18 +24,18 @@ public class TransacaoService {
     private final ITransacaoRepository transacaoRepository;
 
     @Transactional
-    public TransacaoSaqueResponseDto sacar(BigDecimal valor, Long idConta){
-        ContaEntity contaEntity = contaRepository.findById(idConta)
+    public TransacaoSaqueResponseDto sacar(TransacaoSaqueRequestDto request){
+        ContaEntity contaEntity = contaRepository.findById(request.getIdConta())
                 .orElseThrow(()-> new RuntimeException("Conta não encontrada!"));
 
-        if(contaEntity.getSaldo().compareTo(valor)<0){
+        if(contaEntity.getSaldo().compareTo(request.getValor())<0){
             throw new RuntimeException("Saldo insuficiente");
         }
 
-        contaEntity.setSaldo(contaEntity.getSaldo().subtract(valor));
+        contaEntity.setSaldo(contaEntity.getSaldo().subtract(request.getValor()));
 
         TransacaoEntity transacaoEntity = TransacaoEntity.builder()
-                .valor(valor)
+                .valor(request.getValor())
                 .tipoPagamento(TipoPagamento.DINHEIRO)
                 .tipoTransacao(TipoTransacao.SAQUE)
                 .contaOrigem(contaEntity)
@@ -47,7 +48,6 @@ public class TransacaoService {
                 .dataHora(transacaoEntity.getDataHora())
                 .tipoPagamento(transacaoEntity.getTipoPagamento())
                 .tipoTransacao(transacaoEntity.getTipoTransacao())
-                .contaOrigem(transacaoEntity.getContaOrigem())
                 .build();
     }
 
