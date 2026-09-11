@@ -2,7 +2,6 @@ package br.com.fernando.banco_spring.dto;
 
 import br.com.fernando.banco_spring.database.enums.TipoPagamento;
 import br.com.fernando.banco_spring.database.enums.TipoTransacao;
-import br.com.fernando.banco_spring.database.model.ContaEntity;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -13,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TransacaoSaqueResponseDto {
+public class TransacaoResponseDto {
 
     private BigDecimal valor;
     private TipoTransacao tipoTransacao;

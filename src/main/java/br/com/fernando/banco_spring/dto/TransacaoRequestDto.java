@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TransacaoSaqueRequestDto {
+public class TransacaoRequestDto {
     BigDecimal valor;
     Long idConta;
 }
