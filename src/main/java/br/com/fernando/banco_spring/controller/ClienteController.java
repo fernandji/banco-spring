@@ -20,10 +20,16 @@ public class ClienteController {
     private final ClienteService clienteService;
     private final ContaService contaService;
 
-    @GetMapping("{id}")
+    @GetMapping("/saldo/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ContaResponseDto visualizarSaldo(@PathVariable Long id){
         return contaService.visualizarSaldo(id);
+    }
+
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ClienteResponseDto visualizarDados(@PathVariable Long id){
+        return clienteService.visualizarDados(id);
     }
 
     @PostMapping

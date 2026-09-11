@@ -39,4 +39,17 @@ public class ClienteService {
                 .build();
     }
 
+    public ClienteResponseDto visualizarDados(Long idCliente){
+        ClienteEntity clienteEntity = clienteRepository.findById(idCliente)
+                .orElseThrow(()-> new RuntimeException("Cliente não encontrado!"));
+
+        return ClienteResponseDto.builder()
+                .nome(clienteEntity.getNome())
+                .email(clienteEntity.getEmail())
+                .cpf(clienteEntity.getCpf())
+                .endereco(clienteEntity.getEndereco())
+                .telefone(clienteEntity.getTelefone())
+                .build();
+    }
+
 }
