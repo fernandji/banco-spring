@@ -2,8 +2,10 @@ package br.com.fernando.banco_spring.controller;
 
 import br.com.fernando.banco_spring.dto.ClienteRequestDto;
 import br.com.fernando.banco_spring.dto.ClienteResponseDto;
+import br.com.fernando.banco_spring.dto.ContaResponseDto;
 import br.com.fernando.banco_spring.service.ClienteService;
 
+import br.com.fernando.banco_spring.service.ContaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,13 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class ClienteController {
     private final ClienteService clienteService;
+    private final ContaService contaService;
+
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ContaResponseDto visualizarSaldo(@PathVariable Long id){
+        return contaService.visualizarSaldo(id);
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
