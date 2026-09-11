@@ -7,15 +7,17 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TransacaoResponseDto {
-
+public class TransferenciaResponseDto {
+    private String nomeContaOrigem;
+    private String nomeContaDestino;
     private BigDecimal valor;
-    private TipoTransacao tipoTransacao;
     private TipoPagamento tipoPagamento;
+    private TipoTransacao tipoTransacao;
     private LocalDateTime dataHora;
 }

@@ -1,7 +1,9 @@
 package br.com.fernando.banco_spring.controller;
 
-import br.com.fernando.banco_spring.dto.TransacaoRequestDto;
-import br.com.fernando.banco_spring.dto.TransacaoResponseDto;
+import br.com.fernando.banco_spring.dto.SaqueDepositoRequestDto;
+import br.com.fernando.banco_spring.dto.SaqueDepositoResponseDto;
+import br.com.fernando.banco_spring.dto.TransferenciaRequestDto;
+import br.com.fernando.banco_spring.dto.TransferenciaResponseDto;
 import br.com.fernando.banco_spring.service.TransacaoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +21,20 @@ public class TransacaoController {
 
     @PostMapping("/saque")
     @ResponseStatus(HttpStatus.CREATED)
-    public TransacaoResponseDto sacar(@Valid @RequestBody TransacaoRequestDto request){
+    public SaqueDepositoResponseDto sacar(@Valid @RequestBody SaqueDepositoRequestDto request){
         return transacaoService.sacar(request);
     }
 
     @PostMapping("/deposito")
     @ResponseStatus(HttpStatus.CREATED)
-    public TransacaoResponseDto depositar(@Valid @RequestBody TransacaoRequestDto request){
+    public SaqueDepositoResponseDto depositar(@Valid @RequestBody SaqueDepositoRequestDto request){
         return transacaoService.depositar(request);
+    }
+
+    @PostMapping("/transferencia")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TransferenciaResponseDto transferir(@Valid @RequestBody TransferenciaRequestDto request){
+        return transacaoService.transferir(request);
     }
 
 }
