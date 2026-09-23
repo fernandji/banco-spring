@@ -5,6 +5,7 @@ import br.com.fernando.banco_spring.database.model.ContaEntity;
 import br.com.fernando.banco_spring.database.repository.IClienteRepository;
 import br.com.fernando.banco_spring.database.repository.IContaRepository;
 import br.com.fernando.banco_spring.dto.ContaResponseDto;
+import br.com.fernando.banco_spring.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class ContaService {
 
     public void criarConta(Long idCliente){
         ClienteEntity clienteEntity = clienteRepository.findById(idCliente)
-                .orElseThrow(()-> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(()-> new NotFoundException("Cliente não encontrado"));
 
         ContaEntity contaEntity = ContaEntity.builder()
                 .saldo(BigDecimal.ZERO)
@@ -30,7 +31,7 @@ public class ContaService {
 
     public ContaResponseDto visualizarSaldo(Long idConta){
         ContaEntity contaEntity = contaRepository.findById(idConta)
-                .orElseThrow(()-> new RuntimeException("Conta não encontrada!"));
+                .orElseThrow(()-> new NotFoundException("Conta não encontrada!"));
 
         return ContaResponseDto.builder()
                 .idConta(contaEntity.getIdConta())

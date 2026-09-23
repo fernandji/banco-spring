@@ -4,6 +4,7 @@ import br.com.fernando.banco_spring.database.model.ClienteEntity;
 import br.com.fernando.banco_spring.database.repository.IClienteRepository;
 import br.com.fernando.banco_spring.dto.ClienteRequestDto;
 import br.com.fernando.banco_spring.dto.ClienteResponseDto;
+import br.com.fernando.banco_spring.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +42,7 @@ public class ClienteService {
 
     public ClienteResponseDto visualizarDados(Long idCliente){
         ClienteEntity clienteEntity = clienteRepository.findById(idCliente)
-                .orElseThrow(()-> new RuntimeException("Cliente não encontrado!"));
+                .orElseThrow(()-> new NotFoundException("Cliente não encontrado!"));
 
         return ClienteResponseDto.builder()
                 .nome(clienteEntity.getNome())
